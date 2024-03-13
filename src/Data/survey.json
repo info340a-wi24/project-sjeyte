@@ -1,0 +1,27 @@
+[
+  {
+    "id": "stressLevel",
+    "question": "How often do you feel stressed?",
+    "options": ["Very often", "Often", "Sometimes", "Rarely", "Never"]
+  },
+  {
+    "id": "relaxationDifficulty",
+    "question": "Do you find it difficult to relax?",
+    "options": ["Always", "Often", "Sometimes", "Rarely", "Never"]
+  },
+  {
+    "id": "anxietyFrequency",
+    "question": "How frequently do you feel anxious?",
+    "options": ["Very frequently", "Frequently", "Occasionally", "Rarely", "Never"]
+  },
+  {
+    "id": "sleepQuality",
+    "question": "How would you rate your sleep quality?",
+    "options": ["Very poor", "Poor", "Average", "Good", "Excellent"]
+  },
+  {
+    "id": "mindfulnessInterest",
+    "question": "Are you interested in mindfulness exercises?",
+    "options": ["Very interested", "Somewhat interested", "Neutral", "Not very interested", "Not interested at all"]
+  }
+]
