@@ -1,13 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { db } from '../index';
 
 function MoodTracker() {
   const [moods, setMoods] = useState([]);
-
   const [newMood, setNewMood] = useState({
     date: '',
     mood: '',
     notes: '',
   });
+
+  useEffect(() => {
+    const unsubscribe = db.ref('moods').on('value', (snapshot) => {
+      const moodData = snapshot.val();
+      if (moodData) {
+        const moodList = Object.entries(moodData).map(([key, value]) => ({
+          id: key,
+          ...value,
+        }));
+        setMoods(moodList);
+      } else {
+        setMoods([]);
+      }
+    }, (error) => {
+      console.error('Error fetching mood data:', error);
+    });
+
+    return () => {
+      db.ref('moods').off('value', unsubscribe);
+    };
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -19,20 +40,31 @@ function MoodTracker() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const moodData = {
-      id: moods.length + 1,
-      ...newMood,
-    };
-    setMoods((prevMoods) => [...prevMoods, moodData]);
-    setNewMood({
-      date: '',
-      mood: '',
-      notes: '',
-    });
+    if (newMood.date && newMood.mood) {
+      const moodRef = db.ref('moods').push();
+      moodRef.set(newMood)
+        .then(() => {
+          setNewMood({
+            date: '',
+            mood: '',
+            notes: '',
+          });
+        })
+        .catch((error) => {
+          console.error('Error adding mood:', error);
+        });
+    }
+  };
+
+  const handleDelete = (moodId) => {
+    db.ref(`moods/${moodId}`).remove()
+      .catch((error) => {
+        console.error('Error deleting mood:', error);
+      });
   };
 
   return (
-    <main className="container my-5">
+    <main className="container my-5" style={{ paddingTop: '80px' }}>
       <h1>Mood Tracker</h1>
       <p>Track your daily moods and emotions to gain insights into your mental well-being.</p>
       <section id="mood-form">
@@ -90,6 +122,7 @@ function MoodTracker() {
               <th>Date</th>
               <th>Mood</th>
               <th>Notes</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -98,6 +131,14 @@ function MoodTracker() {
                 <td>{mood.date}</td>
                 <td>{mood.mood}</td>
                 <td>{mood.notes}</td>
+                <td>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => handleDelete(mood.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

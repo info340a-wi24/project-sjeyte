@@ -72,7 +72,7 @@ function GuidedMeditation() {
     : meditations;
 
   return (
-    <main className="container my-5">
+    <main className="container my-5" style={{ paddingTop: '80px' }}>
       <h1>Guided Meditation Library</h1>
       <p>Explore our collection of guided meditations to find relaxation and inner peace.</p>
       <section id="meditation-categories">
@@ -95,7 +95,7 @@ function GuidedMeditation() {
           </div>
           <div className="col-md-4">
             <div className="card mb-4">
-              <img src= {anxiety} alt="Anxiety Relief Meditation" className="card-img-top" />
+              <img src={anxiety} alt="Anxiety Relief Meditation" className="card-img-top" />
               <div className="card-body">
                 <h5 className="card-title">Anxiety Relief</h5>
                 <p className="card-text">Meditations to calm your mind and ease anxiety.</p>
@@ -110,7 +110,7 @@ function GuidedMeditation() {
           </div>
           <div className="col-md-4">
             <div className="card mb-4">
-              <img src= {sleep} alt="Sleep Meditation" className="card-img-top" />
+              <img src={sleep} alt="Sleep Meditation" className="card-img-top" />
               <div className="card-body">
                 <h5 className="card-title">Sleep</h5>
                 <p className="card-text">Meditations to help you relax and fall asleep.</p>

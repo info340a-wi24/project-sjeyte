@@ -8,6 +8,7 @@ import ResourceDirectory from './ResourceDirectory';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Footer from './Footer';
+import PrivateRoute from './PrivateRoute';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mood-tracker" element={<MoodTracker />} />
+        <Route path="/mood-tracker" element={<PrivateRoute><MoodTracker /></PrivateRoute>} />
         <Route path="/guided-meditation" element={<GuidedMeditation />} />
         <Route path="/resource-directory" element={<ResourceDirectory />} />
         <Route path="/signin" element={<SignIn />} />

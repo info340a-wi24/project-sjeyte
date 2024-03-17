@@ -10,11 +10,10 @@ html, body {
 }
 
 body {
-  background-color: #f0f2f5;
+  background-color: #f8f9fa;
   color: #333;
   display: flex;
   flex-direction: column;
-  padding-top: 150px;
 }
 
 a {
@@ -28,19 +27,18 @@ a:hover {
 }
 
 header {
-  padding-top: 1rem;
-  background-color: #f8f9fa;
-  z-index: 1000;
-}
-
-.navbar {
+  padding: 0.5rem 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #ddd;
-  padding: 0.5rem 1rem;
+  z-index: 1000;
+}
+
+.navbar {
+  padding: 0.25rem 1rem;
 }
 
 .navbar .container {
@@ -55,33 +53,117 @@ header {
 }
 
 .nav-link {
-  margin: 0 1em;
-  font-size: 1.1em;
+  margin: 0 0.75em;
+  font-size: 1em;
+  font-weight: 500;
+  transition: color 300ms;
+}
+
+.nav-link:hover {
+  color: #ff4444;
 }
 
 .navbar-brand {
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1.25em;
 }
 
 .navbar-toggler {
   border: none;
 }
 
-.bg-light {
-  background-color: #f8f9fa !important;
-}
-
 .navbar-light .navbar-nav .nav-link {
   color: #000;
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
-  color: #ff4444;
-}
-
 .navbar-light .navbar-nav .nav-link.active {
   font-weight: bold;
+}
+
+main {
+  flex: 1;
+  padding: 2rem 0;
+  margin-top: 60px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.form-control, .form-select {
+  margin-bottom: 1rem;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 300ms;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img-top {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card-title {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  color: #666;
+}
+
+.blockquote {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.blockquote-footer {
+  color: #999;
+}
+
+.table {
+  margin-bottom: 2rem;
+}
+
+.table thead th {
+  font-weight: bold;
+}
+
+footer {
+  background-color: #fff;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+.signout-btn {
+  display: none;
+}
+
+.navbar .signout-btn {
+  display: inline-block;
 }
 
 .hero {
@@ -97,27 +179,32 @@ header {
   max-width: 100%;
   height: auto;
   margin-top: -3rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .hero h1 {
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #333;
+  margin-bottom: 1rem;
 }
 
 .hero p {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #666;
+  margin-bottom: 2rem;
 }
 
 .btn-primary {
   background-color: #ff4444;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   color: white;
   cursor: pointer;
-  font-size: 1rem;
-  border-radius: 0.25rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  transition: background-color 300ms;
 }
 
 .btn-primary:hover {
@@ -126,8 +213,11 @@ header {
 
 #initial-survey {
   background-color: #fff;
-  padding: 2rem;
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: none;
+  margin-top: 2rem;
 }
 
 #initial-survey.active {
@@ -135,25 +225,28 @@ header {
 }
 
 #initial-survey h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 #initial-survey p {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
 }
 
 #recommendations {
   background-color: #f8f9fa;
-  padding: 2rem;
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
 }
 
 #recommendations h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 #recommendations ul {
@@ -162,42 +255,46 @@ header {
 
 #recommendations li {
   background-color: #fff;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .meditation-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
-}
-
-footer {
-  background-color: #f8f9fa;
-  padding: 1rem;
-  text-align: center;
-}
-
-footer p {
-  margin-bottom: 0;
+  border-radius: 4px;
 }
 
 @media (max-width: 768px) {
+  main {
+    margin-top: 100px;
+  }
+
   .hero {
     flex-direction: column;
     padding: 1rem;
   }
 
   .hero h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .hero p {
-    font-size: 0.875rem;
+    font-size: 1rem;
   }
 
   .navbar {
     padding: 0.5rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.2em;
+  }
+
+  .nav-link {
+    margin: 0.5em 0;
   }
 }

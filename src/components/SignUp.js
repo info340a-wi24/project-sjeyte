@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { auth } from '../index';
 
 function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -17,18 +20,33 @@ function SignUp() {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Email:', email, 'Password:', password, 'Confirm Password:', confirmPassword);
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setError(null);
+      setSuccessMessage('Signed up successfully!');
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
-    <main className="container my-5">
+    <main className="container my-5" style={{ paddingTop: '80px' }}>
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
               <h2 className="card-title text-center mb-4">Sign Up</h2>
+              {error && <div className="alert alert-danger">{error}</div>}
+              {successMessage && <div className="alert alert-success">{successMessage}</div>}
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="signup-email" className="form-label">Email:</label>

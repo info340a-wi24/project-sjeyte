@@ -1,8 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logoImage from '../img/Harmony-logo.png';
+import { auth } from '../index';
+import { useAuth } from '../contexts/AuthContext';
 
 function Header() {
+  const { currentUser } = useAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      alert('Signed out successfully!');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,9 +48,17 @@ function Header() {
               <li className="nav-item">
                 <Link className="nav-link" to="/resource-directory">Resource Directory</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/signin">Sign In</Link>
-              </li>
+              {currentUser ? (
+                <li className="nav-item">
+                  <button className="btn btn-primary" onClick={handleSignOut}>
+                    Sign Out
+                  </button>
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/signin">Sign In</Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
